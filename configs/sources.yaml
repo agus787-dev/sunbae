@@ -1,0 +1,51 @@
+# Data sources for Sunbae.
+# Each source records where the data comes from, its license,
+# its provenance, our decision, and its share in the mixture.
+
+project:
+  name: sunbae
+  description: Uzbek-language assistant for Uzbek students living in Korea
+  languages: [uz]
+  last_reviewed: 2026-11-05
+
+sources:
+  - id: fineweb2_uz
+    name: FineWeb-2 (Uzbek, Latin script)
+    type: hf_dataset
+    repo: HuggingFaceFW/fineweb-2
+    subset: uzn_Latn
+    text_field: text
+    domain: general web text
+    license: ODC-By-1.0
+    provenance: Common Crawl snapshots (2013-2024) -> original websites
+    extra_terms: Common Crawl Terms of Use
+    decision: use
+    weight: 0.35
+    notes: Extra PII and safety filtering required.
+
+  - id: uz_wiki
+    name: Uzbek Wikipedia
+    type: hf_dataset
+    repo: yakhyo/uz-wiki
+    subset: null
+    text_field: text
+    domain: encyclopedia
+    license: CC-BY-SA-4.0
+    license_listed: MIT
+    provenance: Uzbek Wikipedia dump (2024-09-20) -> volunteer editors
+    decision: use
+    weight: 0.20
+    notes: Listed as MIT, but the original Wikipedia text is CC BY-SA 4.0. Follow CC BY-SA.
+
+  - id: uz_news
+    name: Uzbek news dataset
+    type: hf_dataset
+    repo: MLDataScientist/Uzbek_news_dataset
+    subset: null
+    text_field: text
+    domain: news
+    license: CC-BY-4.0
+    provenance: Uzbek news websites (list not provided) -> journalists and publishers
+    decision: review
+    weight: 0.10
+    notes: Original sites unknown; publisher permission unclear. High duplication.
