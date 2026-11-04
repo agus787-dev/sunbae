@@ -10,3 +10,5 @@ checkpoints/
 
 # macOS
 .DS_Store
+
+.venv/
