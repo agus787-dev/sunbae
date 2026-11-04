@@ -1,0 +1,20 @@
+{
+  "source": "uz_wiki",
+  "step": "filtering",
+  "input": "data/cleaned/uz_wiki_cleaned.jsonl",
+  "output": "data/filtered/uz_wiki_filtered.jsonl",
+  "removed_output": "data/filtered/uz_wiki_removed.jsonl",
+  "config": {
+    "min_chars": 200,
+    "min_alpha_ratio": 0.5,
+    "max_repeated_line_ratio": 0.3
+  },
+  "docs_before": 299830,
+  "docs_after": 250612,
+  "removed_total": 49218,
+  "removed_by_reason": {
+    "min_chars": 48419,
+    "min_alpha_ratio": 58,
+    "max_repeated_line_ratio": 741
+  }
+}

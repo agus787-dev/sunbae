@@ -1,0 +1,33 @@
+{
+  "source": "uz_wiki",
+  "step": "exact_dedup",
+  "method": "SHA-256 of lowercased, whitespace-normalized text; first occurrence kept",
+  "input": "data/filtered/uz_wiki_filtered.jsonl",
+  "output": "data/deduped/uz_wiki_deduped.jsonl",
+  "duplicates_output": "data/deduped/uz_wiki_duplicates.jsonl",
+  "docs_before": 250612,
+  "docs_after": 249654,
+  "duplicates_removed": 958,
+  "examples": [
+    {
+      "removed": "Bernsdorf",
+      "duplicate_of": "Bernsdorf (Zwickau)"
+    },
+    {
+      "removed": "Band (tushuncha)",
+      "duplicate_of": "Band (soʻz)"
+    },
+    {
+      "removed": "Gʻoyibon",
+      "duplicate_of": "Oqmachit (shaharcha)"
+    },
+    {
+      "removed": "Oʻyrat",
+      "duplicate_of": "Avazboy"
+    },
+    {
+      "removed": "Bolalarni himoya qilish va chet ellik farzand asrab olish boʻyicha hamkorlik konvensiyasi",
+      "duplicate_of": "Bolalarni himoya qilish va chet ellik farzand asrab olish boʻyicha hamkorlik toʻgʻrisidagi konvensiya"
+    }
+  ]
+}

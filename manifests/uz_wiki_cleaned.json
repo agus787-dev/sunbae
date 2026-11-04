@@ -1,0 +1,13 @@
+{
+  "source": "uz_wiki",
+  "step": "cleaning",
+  "input": "data/raw/uz_wiki.jsonl",
+  "output": "data/cleaned/uz_wiki_cleaned.jsonl",
+  "removed_output": "data/cleaned/uz_wiki_empty_removed.jsonl",
+  "docs_before": 299834,
+  "docs_after": 299830,
+  "empty_removed": 4,
+  "docs_changed": 293649,
+  "chars_before": 397589313,
+  "chars_after": 395295567
+}

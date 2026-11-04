@@ -1,0 +1,15 @@
+{
+  "source": "uz_wiki",
+  "step": "pii_masking",
+  "method": "regex masking: EMAIL, PHONE (+998, +82, Korean mobile), IP",
+  "not_masked": "person names (public figures in Wikipedia)",
+  "input": "data/deduped/uz_wiki_deduped.jsonl",
+  "output": "data/final/uz_wiki.jsonl",
+  "docs": 249654,
+  "docs_with_pii": 95,
+  "masked_counts": {
+    "EMAIL": 52,
+    "PHONE": 44,
+    "IP": 133
+  }
+}

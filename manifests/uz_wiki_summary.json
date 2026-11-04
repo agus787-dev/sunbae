@@ -1,0 +1,29 @@
+{
+  "source": "uz_wiki",
+  "pipeline": [
+    "cleaning",
+    "filtering",
+    "exact_dedup",
+    "pii_masking"
+  ],
+  "raw_docs": 299834,
+  "final_docs": 249654,
+  "final_output": "data/final/uz_wiki.jsonl",
+  "kept_ratio": 0.8326,
+  "removed": {
+    "empty_after_cleaning": 4,
+    "min_chars": 48419,
+    "min_alpha_ratio": 58,
+    "max_repeated_line_ratio": 741,
+    "exact_duplicates": 958
+  },
+  "pii_masked": {
+    "EMAIL": 52,
+    "PHONE": 44,
+    "IP": 133
+  },
+  "final_size": {
+    "characters": 383953937,
+    "words": 46921111
+  }
+}
