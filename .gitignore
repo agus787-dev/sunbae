@@ -1,0 +1,12 @@
+# Data and model files
+data/
+checkpoints/
+*.safetensors
+*.bin
+*.pt
+
+# Secrets
+.env
+
+# macOS
+.DS_Store
