@@ -1,0 +1,16 @@
+# Run 01: first baseline model for Sunbae (uz_wiki, v0 tokenizer)
+
+run:
+  name: run_01
+  seed: 42
+  device: mps            # Mac GPU
+
+model:
+  vocab_size: 8000       # must match tokenizer/tokenizer.json
+  block_size: 256        # context length (tokens)
+  n_layer: 6             # number of transformer blocks
+  n_head: 6              # query heads
+  d_model: 384           # embedding size; head_dim = 384 / 6 = 64
+  mlp_ratio: 4           # FFN hidden = 4 * 384 = 1536
+  tie_weights: true      # embedding and LM head share one matrix
+  dropout: 0.1
