@@ -23,7 +23,7 @@ TOKENIZER_MANIFEST = ROOT / "manifests" / "tokenizer.json"
 config = load_config(CONFIG_FILE)
 params = config.estimate_parameters()
 
-print("=== Our LLM Model Design ===")
+print("=== Sunbae Model Design ===")
 print()
 print("Vocabulary size    :", config.vocab_size)
 print("Context length     :", config.block_size)
