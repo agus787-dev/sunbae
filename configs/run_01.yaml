@@ -3,7 +3,7 @@
 run:
   name: run_01
   seed: 42
-  device: mps            # Mac GPU
+  device: auto           # cuda -> mps (Mac GPU) -> cpu
 
 model:
   vocab_size: 8000       # must match tokenizer/tokenizer.json
@@ -14,3 +14,26 @@ model:
   mlp_ratio: 4           # FFN hidden = 4 * 384 = 1536
   tie_weights: true      # embedding and LM head share one matrix
   dropout: 0.1
+
+data:
+  train_bin: dataset/train.bin
+  val_bin: dataset/val.bin
+  meta: dataset/meta.json
+
+training:
+  batch_size: 32
+  grad_accum_steps: 4        # 32 * 4 * 256 = 32,768 tokens per step
+  max_steps: 8000            # ~262M tokens, about 0.8 pass over 328M train tokens
+  warmup_steps: 200
+  lr_max: 3.0e-4
+  min_lr_ratio: 0.1
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  log_interval: 20
+  eval_interval: 250
+  eval_iters: 50
+  checkpoint_interval: 250
+  precision: auto            # bf16 if supported, else fp16 on CUDA (T4), else fp32
+  out_dir: checkpoints
