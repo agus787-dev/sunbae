@@ -1,0 +1,49 @@
+{
+  "step": "mixture",
+  "method": "cross-source exact dedup: SHA-256 of lowercased, whitespace-normalized text; first copy kept in priority order",
+  "priority": [
+    "uz_wiki",
+    "uz_news",
+    "fineweb2_uz"
+  ],
+  "sampling": "sources with mix_max_chars: random sample (seed 42) until the limit",
+  "output": "data/final/mixture.jsonl",
+  "sources": {
+    "uz_wiki": {
+      "input": "data/final/uz_wiki.jsonl",
+      "docs": 249654,
+      "characters": 383953937,
+      "words": 46921111,
+      "cross_source_duplicates_removed": 0,
+      "mix_max_chars": null,
+      "docs_not_sampled": 0,
+      "char_share": 0.3123
+    },
+    "uz_news": {
+      "input": "data/final/uz_news.jsonl",
+      "docs": 200206,
+      "characters": 399999267,
+      "words": 46899212,
+      "cross_source_duplicates_removed": 2,
+      "mix_max_chars": 400000000,
+      "docs_not_sampled": 307623,
+      "char_share": 0.3253
+    },
+    "fineweb2_uz": {
+      "input": "data/final/fineweb2_uz.jsonl",
+      "docs": 120362,
+      "characters": 445559190,
+      "words": 54614791,
+      "cross_source_duplicates_removed": 1665,
+      "mix_max_chars": null,
+      "docs_not_sampled": 0,
+      "char_share": 0.3624
+    }
+  },
+  "totals": {
+    "docs": 570222,
+    "characters": 1229512394,
+    "words": 148435114,
+    "cross_source_duplicates_removed": 1667
+  }
+}

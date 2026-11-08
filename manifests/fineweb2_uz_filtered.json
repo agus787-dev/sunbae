@@ -1,0 +1,20 @@
+{
+  "source": "fineweb2_uz",
+  "step": "filtering",
+  "input": "data/cleaned/fineweb2_uz_cleaned.jsonl",
+  "output": "data/filtered/fineweb2_uz_filtered.jsonl",
+  "removed_output": "data/filtered/fineweb2_uz_removed.jsonl",
+  "config": {
+    "min_chars": 200,
+    "min_alpha_ratio": 0.5,
+    "max_repeated_line_ratio": 0.3
+  },
+  "docs_before": 122544,
+  "docs_after": 122040,
+  "removed_total": 504,
+  "removed_by_reason": {
+    "min_chars": 0,
+    "min_alpha_ratio": 0,
+    "max_repeated_line_ratio": 504
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "source": "uz_news",
+  "pipeline": [
+    "cleaning",
+    "filtering",
+    "exact_dedup",
+    "pii_masking"
+  ],
+  "raw_docs": 512750,
+  "final_docs": 507831,
+  "final_output": "data/final/uz_news.jsonl",
+  "kept_ratio": 0.9904,
+  "removed": {
+    "empty_after_cleaning": 0,
+    "min_chars": 2518,
+    "min_alpha_ratio": 74,
+    "max_repeated_line_ratio": 1934,
+    "exact_duplicates": 393
+  },
+  "pii_masked": {
+    "EMAIL": 1532,
+    "PHONE": 7501,
+    "IP": 1771
+  },
+  "final_size": {
+    "characters": 1015399912,
+    "words": 119034601
+  }
+}

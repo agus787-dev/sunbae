@@ -238,7 +238,8 @@ class ExactDeduplicator:
         h = self.text_hash(doc["text"])
         if h in self.first_title:
             return self.first_title[h]
-        self.first_title[h] = doc["title"]
+        # Web/news sources have no title, so fall back to the doc id.
+        self.first_title[h] = doc.get("title", doc["id"])
         return None
 
     def run(self, docs: list[dict[str, Any]]) -> tuple[list[dict], list[dict]]:
@@ -366,7 +367,7 @@ class Pipeline:
                     continue
                 dups.write({**doc, "duplicate_of": original})
                 if len(examples) < 5:
-                    examples.append({"removed": doc["title"], "duplicate_of": original})
+                    examples.append({"removed": doc.get("title", doc["id"]), "duplicate_of": original})
 
         self.save_manifest("exact_dedup", "deduped", {
             "source": self.source,

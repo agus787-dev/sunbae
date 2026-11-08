@@ -1,0 +1,13 @@
+{
+  "source": "uz_news",
+  "step": "cleaning",
+  "input": "data/raw/uz_news.jsonl",
+  "output": "data/cleaned/uz_news_cleaned.jsonl",
+  "removed_output": "data/cleaned/uz_news_empty_removed.jsonl",
+  "docs_before": 512750,
+  "docs_after": 512750,
+  "empty_removed": 0,
+  "docs_changed": 509856,
+  "chars_before": 1026763381,
+  "chars_after": 1024591513
+}

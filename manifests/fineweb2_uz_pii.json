@@ -1,0 +1,15 @@
+{
+  "source": "fineweb2_uz",
+  "step": "pii_masking",
+  "method": "regex masking: EMAIL, PHONE (+998, +82, Korean mobile), IP",
+  "not_masked": "person names (public figures in Wikipedia)",
+  "input": "data/deduped/fineweb2_uz_deduped.jsonl",
+  "output": "data/final/fineweb2_uz.jsonl",
+  "docs": 122027,
+  "docs_with_pii": 2447,
+  "masked_counts": {
+    "EMAIL": 2389,
+    "PHONE": 1314,
+    "IP": 380
+  }
+}

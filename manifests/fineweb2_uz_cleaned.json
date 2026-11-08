@@ -1,0 +1,13 @@
+{
+  "source": "fineweb2_uz",
+  "step": "cleaning",
+  "input": "data/raw/fineweb2_uz.jsonl",
+  "output": "data/cleaned/fineweb2_uz_cleaned.jsonl",
+  "removed_output": "data/cleaned/fineweb2_uz_empty_removed.jsonl",
+  "docs_before": 122544,
+  "docs_after": 122544,
+  "empty_removed": 0,
+  "docs_changed": 98085,
+  "chars_before": 450002711,
+  "chars_after": 449807872
+}

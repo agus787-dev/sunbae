@@ -1,0 +1,33 @@
+{
+  "source": "fineweb2_uz",
+  "step": "exact_dedup",
+  "method": "SHA-256 of lowercased, whitespace-normalized text; first occurrence kept",
+  "input": "data/filtered/fineweb2_uz_filtered.jsonl",
+  "output": "data/deduped/fineweb2_uz_deduped.jsonl",
+  "duplicates_output": "data/deduped/fineweb2_uz_duplicates.jsonl",
+  "docs_before": 122040,
+  "docs_after": 122027,
+  "duplicates_removed": 13,
+  "examples": [
+    {
+      "removed": "fineweb2_uz-16037",
+      "duplicate_of": "fineweb2_uz-9620"
+    },
+    {
+      "removed": "fineweb2_uz-16906",
+      "duplicate_of": "fineweb2_uz-9620"
+    },
+    {
+      "removed": "fineweb2_uz-17522",
+      "duplicate_of": "fineweb2_uz-12798"
+    },
+    {
+      "removed": "fineweb2_uz-34634",
+      "duplicate_of": "fineweb2_uz-34506"
+    },
+    {
+      "removed": "fineweb2_uz-43314",
+      "duplicate_of": "fineweb2_uz-24473"
+    }
+  ]
+}

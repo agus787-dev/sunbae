@@ -1,0 +1,29 @@
+{
+  "source": "fineweb2_uz",
+  "pipeline": [
+    "cleaning",
+    "filtering",
+    "exact_dedup",
+    "pii_masking"
+  ],
+  "raw_docs": 122544,
+  "final_docs": 122027,
+  "final_output": "data/final/fineweb2_uz.jsonl",
+  "kept_ratio": 0.9958,
+  "removed": {
+    "empty_after_cleaning": 0,
+    "min_chars": 0,
+    "min_alpha_ratio": 0,
+    "max_repeated_line_ratio": 504,
+    "exact_duplicates": 13
+  },
+  "pii_masked": {
+    "EMAIL": 2389,
+    "PHONE": 1314,
+    "IP": 380
+  },
+  "final_size": {
+    "characters": 448339694,
+    "words": 54945691
+  }
+}

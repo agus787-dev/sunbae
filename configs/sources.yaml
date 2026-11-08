@@ -15,12 +15,14 @@ sources:
     repo: HuggingFaceFW/fineweb-2
     subset: uzn_Latn
     text_field: text
+    max_chars: 450000000  # 450M characters
+    mix_max_chars: null  # no limit
     domain: general web text
     license: ODC-By-1.0
     provenance: Common Crawl snapshots (2013-2024) -> original websites
     extra_terms: Common Crawl Terms of Use
     decision: use
-    weight: 0.35
+    weight: 0.36
     notes: Extra PII and safety filtering required.
 
   - id: uz_wiki
@@ -29,12 +31,14 @@ sources:
     repo: yakhyo/uz-wiki
     subset: null
     text_field: text
+    max_chars: null  # no limit
+    mix_max_chars: null  # no limit
     domain: encyclopedia
     license: CC-BY-SA-4.0
     license_listed: MIT
     provenance: Uzbek Wikipedia dump (2024-09-20) -> volunteer editors
     decision: use
-    weight: 0.20
+    weight: 0.31
     notes: Listed as MIT, but the original Wikipedia text is CC BY-SA 4.0. Follow CC BY-SA.
 
   - id: uz_news
@@ -43,9 +47,11 @@ sources:
     repo: MLDataScientist/Uzbek_news_dataset
     subset: null
     text_field: text
+    max_chars: null  # no limit
+    mix_max_chars: 400000000  # 400M characters
     domain: news
     license: CC-BY-4.0
     provenance: Uzbek news websites (list not provided) -> journalists and publishers
-    decision: review
-    weight: 0.10
+    decision: use
+    weight: 0.33
     notes: Original sites unknown; publisher permission unclear. High duplication.

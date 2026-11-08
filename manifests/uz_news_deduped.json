@@ -1,0 +1,33 @@
+{
+  "source": "uz_news",
+  "step": "exact_dedup",
+  "method": "SHA-256 of lowercased, whitespace-normalized text; first occurrence kept",
+  "input": "data/filtered/uz_news_filtered.jsonl",
+  "output": "data/deduped/uz_news_deduped.jsonl",
+  "duplicates_output": "data/deduped/uz_news_duplicates.jsonl",
+  "docs_before": 508224,
+  "docs_after": 507831,
+  "duplicates_removed": 393,
+  "examples": [
+    {
+      "removed": "uz_news-634",
+      "duplicate_of": "uz_news-322"
+    },
+    {
+      "removed": "uz_news-12584",
+      "duplicate_of": "uz_news-6707"
+    },
+    {
+      "removed": "uz_news-14241",
+      "duplicate_of": "uz_news-9310"
+    },
+    {
+      "removed": "uz_news-26846",
+      "duplicate_of": "uz_news-26600"
+    },
+    {
+      "removed": "uz_news-27297",
+      "duplicate_of": "uz_news-26556"
+    }
+  ]
+}

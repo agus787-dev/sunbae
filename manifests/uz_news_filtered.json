@@ -1,0 +1,20 @@
+{
+  "source": "uz_news",
+  "step": "filtering",
+  "input": "data/cleaned/uz_news_cleaned.jsonl",
+  "output": "data/filtered/uz_news_filtered.jsonl",
+  "removed_output": "data/filtered/uz_news_removed.jsonl",
+  "config": {
+    "min_chars": 200,
+    "min_alpha_ratio": 0.5,
+    "max_repeated_line_ratio": 0.3
+  },
+  "docs_before": 512750,
+  "docs_after": 508224,
+  "removed_total": 4526,
+  "removed_by_reason": {
+    "min_chars": 2518,
+    "min_alpha_ratio": 74,
+    "max_repeated_line_ratio": 1934
+  }
+}
