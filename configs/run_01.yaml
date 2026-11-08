@@ -1,4 +1,4 @@
-# Run 01: first baseline model for Sunbae (uz_wiki, v0 tokenizer)
+# Run 01: first baseline model for Sunbae (mixture of uz_wiki + uz_news + fineweb2_uz, tokenizer v1)
 
 run:
   name: run_01

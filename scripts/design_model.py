@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT))
 from src.model_config import load_config  # noqa: E402
 
 CONFIG_FILE = ROOT / "configs" / "run_01.yaml"
+DATASET_META = ROOT / "dataset" / "meta.json"
 DATA_MANIFEST = ROOT / "manifests" / "uz_wiki_summary.json"
 TOKENIZER_MANIFEST = ROOT / "manifests" / "tokenizer.json"
 
@@ -52,16 +53,21 @@ print()
 # standard rule of thumb. Fewer means the model is bigger than our data can
 # teach; many more means we could have afforded a bigger model.
 #
-# Corpus tokens are estimated as words * tokenizer fertility (tokens per word),
-# both taken from the data pipeline manifests.
-if DATA_MANIFEST.exists() and TOKENIZER_MANIFEST.exists():
+# Best: the REAL train token count from dataset/meta.json (scripts/build_dataset.py).
+# Fallback: estimate as words * tokenizer fertility from the pipeline manifests.
+n_tokens = None
+if DATASET_META.exists():
+    n_tokens = json.loads(DATASET_META.read_text(encoding="utf-8"))["n_tokens_train"]
+    print("Training tokens (real)   : {:,}   (from dataset/meta.json)".format(n_tokens))
+elif DATA_MANIFEST.exists() and TOKENIZER_MANIFEST.exists():
     words = json.loads(DATA_MANIFEST.read_text(encoding="utf-8"))["final_size"]["words"]
     fertility = json.loads(TOKENIZER_MANIFEST.read_text(encoding="utf-8"))["fertility"]
     n_tokens = int(words * fertility)
-    ratio = n_tokens / params["total"]
-
     print("Training tokens available: ~{:,}   ({:,} words x {} tokens/word)".format(
         n_tokens, words, fertility))
+
+if n_tokens is not None:
+    ratio = n_tokens / params["total"]
     print("Tokens per parameter     : {:.1f}   (about 20 is the target)".format(ratio))
 
     if ratio < 10:
@@ -71,7 +77,8 @@ if DATA_MANIFEST.exists() and TOKENIZER_MANIFEST.exists():
     else:
         print("-> Reasonably balanced.")
 else:
-    print("No manifests yet - run the data pipeline and tokenizer first to check")
+    print("No dataset/meta.json or manifests yet - run the data pipeline, tokenizer")
+    print("and scripts/build_dataset.py first to check")
     print("the tokens-per-parameter ratio against the real corpus.")
 
 print()
