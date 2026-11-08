@@ -1,17 +1,31 @@
 {
   "step": "tokenizer",
+  "version": "v1",
   "type": "byte-level BPE",
-  "input": "data/final/uz_wiki.jsonl",
+  "input": "data/final/mixture.jsonl",
   "output": "tokenizer/tokenizer.json",
   "vocab_size": 8000,
   "special_tokens": {
     "<eos>": 0
   },
   "min_frequency": 2,
+  "train_docs": 300000,
+  "seed": 42,
+  "eval_docs_per_source": {
+    "fineweb2_uz": 1000,
+    "uz_news": 1000,
+    "uz_wiki": 1000
+  },
   "round_trip": {
     "edge_cases": 9,
-    "corpus_samples": 1000,
+    "corpus_samples": 3000,
     "failures": 0
   },
-  "fertility": 2.292
+  "fertility": 2.244,
+  "fertility_by_source": {
+    "fineweb2_uz": 2.294,
+    "uz_news": 2.094,
+    "uz_wiki": 2.33
+  },
+  "fertility_note": "held-out docs (not used for training); overall = all eval docs together"
 }
