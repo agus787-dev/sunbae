@@ -1,0 +1,16 @@
+# Data, training outputs and the virtual environment (large, not needed to serve the model)
+data/
+dataset/
+checkpoints/
+manifests/
+.venv/
+
+# Notebooks, git, caches
+notebooks/
+.git/
+.gitignore
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+.env

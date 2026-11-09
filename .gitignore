@@ -4,6 +4,8 @@ checkpoints/
 *.safetensors
 *.bin
 *.pt
+# Exception: the small exported model for serving (~28 MB, committed normally)
+!models/sunbae.pt
 
 # Secrets
 .env

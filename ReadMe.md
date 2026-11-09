@@ -31,7 +31,10 @@ tokenizer, design the model, then train it.
 - **Model `run_01`:** GPT-style decoder, 6 layers, `d_model` 384, 6 heads, context 256,
   tied embeddings — **~13.8M parameters**, ~210 MB training memory before activations
 - **Data budget:** ~23.8 tokens per parameter (target ~20)
-- **Training plan:** 8,000 steps × 32,768 tokens = ~262M tokens (~0.8 pass over train)
+- **Training (`run_01`, done):** 8,000 steps × 32,768 tokens = ~262M tokens (~0.8 pass over train)
+  on a Colab T4 (fp16), ~24k tokens/sec
+- **Result:** best val loss **3.1557** at step 7,750 (perplexity ~23.5); exported to
+  `models/sunbae.pt` (float16, ~28 MB)
 
 ## Project structure
 
@@ -76,6 +79,55 @@ Options: `--resume`, `--data_dir`, `--out_dir`, `--max_steps`, `--device` (auto,
    `MyDrive/sunbae/checkpoints/`.
 4. After a disconnect, run all cells again: training resumes from `last.pt`.
 
+## API
+
+Export the trained checkpoint once (weights only, float16, ~28 MB; `models/sunbae.pt` is committed):
+
+```bash
+python scripts/export_model.py --input checkpoints/best.pt
+```
+
+Run the API locally (needs `pip install -r requirements-api.txt`):
+
+```bash
+uvicorn app.main:app --reload --port 8000
+```
+
+Open http://localhost:8000/docs to try it in the browser.
+
+| Endpoint | Body | Returns |
+|---|---|---|
+| `GET /health` | — | `status`, `parameters`, `block_size`, `step`, `val_loss` |
+| `POST /generate` | `prompt` (1–1000 chars), `max_tokens` (1–300, default 100), `temperature` (0–2, default 0.8; 0 = greedy), `top_k` (0–500, default 50; 0 = off), `top_p` (0–1, default 0.95) | `text`, `completion`, `tokens`, `time_ms`, `token_strings` |
+
+```bash
+curl -X POST http://localhost:8000/generate -H "Content-Type: application/json" \
+  -d '{"prompt": "Toshkent shahri", "temperature": 0.8}'
+```
+
+Environment variables:
+
+- `ALLOWED_ORIGINS` – frontend addresses allowed by CORS, comma separated
+  (default `http://localhost:5173,http://127.0.0.1:5173`)
+- `INTERNAL_API_KEY` – optional; if set, `/generate` requires the header `X-API-Key: <key>`
+- `PORT` – port inside Docker (set by Railway; default 8000)
+
+Docker (CPU-only torch, non-root user):
+
+```bash
+docker build -t sunbae-api .
+docker run -p 8000:8000 sunbae-api
+```
+
+## Deploy to Railway
+
+1. In Railway: **New Project → Deploy from GitHub repo** → choose `agus787-dev/sunbae`, branch `main`.
+   Railway finds `railway.json` and builds the `Dockerfile`; the health check is `GET /health`.
+2. In the service's **Variables**, set `ALLOWED_ORIGINS` to the Vercel domain of the frontend,
+   e.g. `https://sunbae-web.vercel.app` (no trailing slash). Optionally set `INTERNAL_API_KEY`.
+3. In **Settings → Networking**, click **Generate Domain** to get the public URL.
+4. Put that URL into the frontend (`sunbae-web`) as `VITE_API_URL` and redeploy the frontend.
+
 ## Data and licenses
 
 Each source in `configs/sources.yaml` records its license and our decision
@@ -92,5 +144,6 @@ Emails, phone numbers and IP addresses are masked as `<EMAIL>`, `<PHONE>` and `<
 
 ## Status
 
-Work in progress: data, tokenizer v1, dataset and training code are done;
-next is the full `run_01` training on Colab, then evaluation and generation.
+Work in progress: data, tokenizer v1, dataset and `run_01` training are done
+(best val loss 3.1557, perplexity ~23.5). The model is served with FastAPI
+(Docker, Railway); next is evaluation and improving generation quality.

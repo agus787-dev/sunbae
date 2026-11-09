@@ -1,0 +1,5 @@
+# API dependencies (Docker / Railway). torch (CPU-only) is installed in the Dockerfile.
+fastapi==0.162.2
+uvicorn[standard]==0.54.0
+tokenizers==0.23.3
+pyyaml==6.0.3
